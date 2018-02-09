@@ -8,6 +8,7 @@ const {
   View,
   Animated,
   ScrollView,
+  StyleSheet,
   InteractionManager,
   Platform,
 } = ReactNative;
@@ -267,7 +268,7 @@ const ScrollableTabView = createReactClass({
       };
     }
 
-    return <View style={this.props.style} onLayout={this._handleLayout}>
+    return <View style={[styles.container, this.props.style, ]} onLayout={this._handleLayout}>
       {this.props.tabBarPosition === 'top' && this.renderTabBar(tabBarProps)}
       {this.renderScrollableContent()}
       {(this.props.tabBarPosition === 'bottom' || overlayTabs) && this.renderTabBar(tabBarProps)}
@@ -276,3 +277,12 @@ const ScrollableTabView = createReactClass({
 });
 
 module.exports = ScrollableTabView;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollableContentAndroid: {
+    flex: 1,
+  },
+});
